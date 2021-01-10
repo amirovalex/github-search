@@ -1,25 +1,39 @@
-import logo from './logo.svg';
-import './App.css';
+import './app.css';
+import { connect } from 'react-redux';
+import { Switch, Route, Redirect } from 'react-router-dom';
+import HomePage from './pages/homepage/homepage.component.jsx';
+import { AppContainer, HtmlStyle } from './app.styles.js';
+import Navbar from './components/navbar/navbar.component.jsx';
+import WithSpinner from './components/withspinner/withspinner.component.jsx';
+import ResultsPage from './pages/resultspage/resultspage.component.jsx';
 
-function App() {
+const mapStateToProps = (state) => {
+  return{
+    users:state.searchUser.users,
+    isFetching:state.searchUser.isFetching
+  }
+}
+const ResultsPageWithSpinner = WithSpinner(ResultsPage)
+
+const App = (props) => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AppContainer>
+      <HtmlStyle/>
+      <Navbar/>
+      <Switch>
+        <Route exact path='/' component={HomePage} />
+        <Route path='/results' render={(otherProps) => { return props.users ? 
+          (props.users === "fetching initial" ? 
+            <ResultsPageWithSpinner isFetching={props.isFetching} {...otherProps} />
+            :
+            <ResultsPage isFetching={props.isFetching} {...otherProps}/>
+          )
+          : 
+          (<Redirect to="/" />)
+        }}/>
+      </Switch>
+    </AppContainer>
   );
 }
 
-export default App;
+export default connect(mapStateToProps)(App);
