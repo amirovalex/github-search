@@ -24,8 +24,7 @@ export const searchUsersReducer = (state=initialState,action={}) => {
 					users:action.payload
 					}
 		case FETCH_USERS_FAILURE:
-			return {...state,isFetching:false,
-					isFetchingError:action.payload}
+			return {...state,isFetchingError:action.payload, ...initialState}
 		case CHANGE_PAGE:
 			return {...state,page:action.payload}
 		case SET_TOTAL_PAGES:

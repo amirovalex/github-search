@@ -10,7 +10,8 @@ import ResultsPage from './pages/resultspage/resultspage.component.jsx';
 const mapStateToProps = (state) => {
   return{
     users:state.searchUser.users,
-    isFetching:state.searchUser.isFetching
+    isFetching:state.searchUser.isFetching,
+    isFetchingError:state.searchUser.isFetchingError
   }
 }
 const ResultsPageWithSpinner = WithSpinner(ResultsPage)
@@ -22,7 +23,7 @@ const App = (props) => {
       <Navbar/>
       <Switch>
         <Route exact path='/' component={HomePage} />
-        <Route path='/results' render={(otherProps) => { return props.users ? 
+        <Route path='/results' render={(otherProps) => { return props.users && !props.isFetchingError ? 
           (props.users === "fetching initial" ? 
             <ResultsPageWithSpinner isFetching={props.isFetching} {...otherProps} />
             :
