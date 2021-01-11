@@ -5,7 +5,7 @@ import { CHANGE_SEARCHFIELD, FETCH_USERS_START,
 import { Octokit } from '@octokit/core';
 
 const octokit = new Octokit({
-	auth:"60027697def00891b319caa88fa68f8a917b70b2"
+	auth:"1f573895a4960bb0deee1436a9f4682839e3e062"
 })
 
 export const changePage = (number) => ({
@@ -72,6 +72,7 @@ export const fetchUsersStartAsync = (searchUser,pageNumber,fetching) => {
 		dispatch(fetchUsersSuccess(fullUsersInfo))
 		}
 		catch(error) {
+			console.log(error)
 			dispatch(fetchUsersFailure(error.message))
 		}
 	}

@@ -32,6 +32,7 @@ const App = (props) => {
           : 
           (<Redirect to="/" />)
         }}/>
+        <Redirect to="/" />
       </Switch>
     </AppContainer>
   );
