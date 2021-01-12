@@ -40,9 +40,6 @@ export const setTotalResults = (results) => ({
 
 
 export const fetchUsersStartAsync = (searchUser,pageNumber,fetching) => {
-	console.log(process.env)
-	console.log(process.env.OCTOKIT_KEY)
-	console.log(fetching)
 	return async dispatch => {
 		try{
 		dispatch( fetching ? fetchUsersStart(fetching) : fetchUsersStart("fetching"))
