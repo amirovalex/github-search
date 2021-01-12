@@ -5,7 +5,7 @@ import { CHANGE_SEARCHFIELD, FETCH_USERS_START,
 import { Octokit } from '@octokit/core';
 
 const octokit = new Octokit({
-	auth:process.env.OCTOKIT_KEY
+	auth:process.env.REACT_APP_OCTOKIT_KEY
 })
 
 export const changePage = (number) => ({
@@ -41,6 +41,7 @@ export const setTotalResults = (results) => ({
 
 export const fetchUsersStartAsync = (searchUser,pageNumber,fetching) => {
 	console.log(process.env)
+	console.log(process.env.OCTOKIT_KEY)
 	console.log(fetching)
 	return async dispatch => {
 		try{
