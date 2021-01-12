@@ -5,7 +5,7 @@ import { CHANGE_SEARCHFIELD, FETCH_USERS_START,
 import { Octokit } from '@octokit/core';
 
 const octokit = new Octokit({
-	auth:process.env.KEY
+	auth:process.env.REACT_APP_API_KEY
 })
 
 export const changePage = (number) => ({
@@ -72,8 +72,12 @@ export const fetchUsersStartAsync = (searchUser,pageNumber,fetching) => {
 		dispatch(fetchUsersSuccess(fullUsersInfo))
 		}
 		catch(error) {
-			console.log(error)
-			dispatch(fetchUsersFailure(error.message))
+			console.log(error.message.includes(`"code":"missing"`))
+			if (error.message.includes(`"code":"missing"`)) {
+				dispatch(fetchUsersFailure("Missing users for this search"))
+			} else {
+				dispatch(fetchUsersFailure(error.message))
+			}
 		}
 	}
 }
