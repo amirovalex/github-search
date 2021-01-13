@@ -13,7 +13,7 @@ export const Carousel = styled.div`
 
 export const PageTag = styled.div`
 	background:${(props) => props.selected ? 'rgba(0,0,0,0.7);' : 'black;'};
-	width:calc(100% / 7);
+	width:100%;
 	cursor:pointer;
 	&:hover {
 		background:rgba(0,0,0,0.7);
