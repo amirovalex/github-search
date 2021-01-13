@@ -2,14 +2,18 @@ import styled,{css} from 'styled-components';
 import { createGlobalStyle } from "styled-components";
 
 const ResultsListCss = css`
-	height: 100%;
     justify-content: center;
     align-items:center;
 `
+
 export const GlobalCssOnFetch = createGlobalStyle`
 	html,body {
 		${({fetching}) => fetching ? 'overflow:hidden' : null}
 	}
+`
+
+export const UserSearch = styled.div`
+	display:flex;
 `
 
 export const ResultsPageContainer = styled.div`
@@ -18,10 +22,6 @@ export const ResultsPageContainer = styled.div`
 	align-items:center;
 	justify-content:center;
 	${({fetching}) => fetching ? "height:100%;" : null}
-`
-
-export const PageTagsList = styled.div`
-
 `
 
 export const ResultsList = styled.div`
