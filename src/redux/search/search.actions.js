@@ -5,7 +5,7 @@ import { CHANGE_SEARCHFIELD, FETCH_USERS_START,
 import { Octokit } from '@octokit/core';
 
 const octokit = new Octokit({
-	auth:"decdad6bcb1c078db549d582ffd85e622d9653df"
+	auth:process.env.REACT_APP_OCTOKIT_KEY
 })
 
 export const changePage = (number) => ({
