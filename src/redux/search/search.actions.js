@@ -68,7 +68,7 @@ export const fetchUsersStartAsync = (searchUser,pageNumber,fetching) => {
 		const totalPages = Math.ceil(searchResult.data.total_count / 40)
 		dispatch(setTotalResults(searchResult.data.total_count))
 		dispatch(setTotalPages(totalPages > 25 ? 25 : totalPages))
-		// dispatch(fetchUsersSuccess(fullUsersInfo))
+		dispatch(fetchUsersSuccess(fullUsersInfo))
 		}
 		catch(error) {
 			console.log(error.message.includes(`"code":"missing"`))
